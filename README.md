@@ -81,32 +81,31 @@
 
 
 ## 📂 Project Structure
-    ai-study-planner/
+    AI STUDY PLANNER/
     │
-    ├── client/
-    │   ├── src/
-    │   │   ├── components/
-    │   │   ├── pages/
-    │   │   ├── context/
-    │   │   └── App.jsx
-    │
+    ├── ai-study-planner/
+    │   └── src/
+    │      ├── components/
+    │      ├── pages/
+    │      ├── context/
+    │      └── App.jsx
+    │       └── screenshots/
+    │           ├── landing.png
+    │           ├── dashboard.png
+    │           ├── upload.png
+    │           ├── ai-analysis.png
+    │           └── study-plans.png
     ├── server/
     │   ├── routes/
     │   ├── index.js
     │   └── .env
     │
-    ├── screenshots/
-    │   ├── landing.png
-    │   ├── dashboard.png
-    │   ├── upload.png
-    │   ├── ai-analysis.png
-    │   └── study-plans.png
     │
     └── README.md
 
 ## ⚙️ Installation & Setup
     1️⃣ Clone Repository
-        git clone https://github.com/your-username/ai-study-planner.git
+        git clone https://github.com/Karanx11/AI-Study-Planner.git
         cd ai-study-planner
 
     2️⃣ Frontend Setup
