@@ -17,7 +17,8 @@ export default function Upload() {
     formData.append("file", file)
 
     try {
-      const res = await fetch("http://localhost:5000/api/upload/syllabus", {
+      const res = await fetch("/api/upload/syllabus", {
+
         method: "POST",
         body: formData,
       })

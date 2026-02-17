@@ -194,7 +194,8 @@ export default function Dashboard() {
     setAiAnalysis("")
 
     try {
-      const res = await fetch("http://localhost:5000/api/ai/readiness", {
+      const res = await fetch("/api/ai/readiness", {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -220,7 +221,8 @@ export default function Dashboard() {
     setDailyPlan("")
 
     try {
-      const res = await fetch("http://localhost:5000/api/ai/daily-plan", {
+      const res = await fetch("/api/ai/daily-plan", {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -248,7 +250,8 @@ export default function Dashboard() {
     setWeeklyPlan("")
 
     try {
-      const res = await fetch("http://localhost:5000/api/ai/weekly-plan", {
+      const res = await fetch("/api/ai/weekly-plan", {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

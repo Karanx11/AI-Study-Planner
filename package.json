@@ -1,6 +1,8 @@
 {
   "name": "ai-study-planner",
   "private": true,
+  "build": "cd client && npm install && npm run build",
+  "start": "cd server && npm install && node index.js",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
