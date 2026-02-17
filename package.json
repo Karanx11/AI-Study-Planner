@@ -1,38 +1,13 @@
 {
   "name": "ai-study-planner",
   "private": true,
-  "build": "cd client && npm install && npm run build",
-  "start": "cd server && npm install && node index.js",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "build": "cd client && npm install && npm run build",
+    "start": "cd server && npm install && node index.js"
   },
-  "dependencies": {
-    "chart.js": "^4.5.1",
-    "framer-motion": "^12.34.0",
-    "react": "^19.2.0",
-    "react-chartjs-2": "^5.3.1",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@tailwindcss/cli": "^4.1.18",
-    "@tailwindcss/postcss": "^4.1.18",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
-    "autoprefixer": "^10.4.24",
-    "eslint": "^9.39.1",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.24",
-    "globals": "^16.5.0",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.18",
-    "vite": "^7.3.1"
+  "engines": {
+    "node": ">=20"
   }
 }
