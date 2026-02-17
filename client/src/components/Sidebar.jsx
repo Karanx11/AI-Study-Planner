@@ -14,10 +14,10 @@ export default function Sidebar() {
     <aside className="w-60 bg-gray-900 border-r border-gray-800 p-4">
       <nav className="space-y-2">
         <Link to="/dashboard" className={linkClass("/dashboard")}>
-          📊 Dashboard
+           Dashboard
         </Link>
         <Link to="/upload" className={linkClass("/upload")}>
-          📚 Upload Syllabus
+           Upload Syllabus
         </Link>
       </nav>
     </aside>
