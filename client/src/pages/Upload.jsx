@@ -2,6 +2,9 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSyllabus } from "../context/SyllabusContext"
 
+const API_BASE =
+  import.meta.env.VITE_API_URL || "http://localhost:5000"
+
 export default function Upload() {
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -17,22 +20,23 @@ export default function Upload() {
     formData.append("file", file)
 
     try {
-      const res = await fetch("/api/upload/syllabus", {
-
-        method: "POST",
-        body: formData,
-      })
+      const res = await fetch(
+        `${API_BASE}/api/upload/syllabus`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      )
 
       const data = await res.json()
 
-     const topics = data.topics.map(t => ({
-  name: t.name,
-  completed: false,
-  difficulty: t.difficulty,
-  priority: t.priority,
-  recommendedHours: t.recommendedHours,
-}))
-
+      const topics = data.topics.map((t) => ({
+        name: t.name,
+        completed: false,
+        difficulty: t.difficulty,
+        priority: t.priority,
+        recommendedHours: t.recommendedHours,
+      }))
 
       setSyllabus({
         subject: file.name,
@@ -50,7 +54,9 @@ export default function Upload() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
-      <h2 className="text-2xl mb-6">Upload Syllabus (PDF / Image)</h2>
+      <h2 className="text-2xl mb-6">
+        Upload Syllabus (PDF / Image)
+      </h2>
 
       <input
         type="file"
@@ -61,7 +67,7 @@ export default function Upload() {
 
       <button
         onClick={handleUpload}
-        className="px-6 py-3 bg-indigo-600 rounded-lg"
+        className="px-6 py-3 bg-indigo-600 rounded-lg hover:bg-indigo-500"
       >
         {loading ? "Analyzing..." : "Upload & Analyze"}
       </button>

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import AppLayout from "../components/AppLayout"
 import { useSyllabus } from "../context/SyllabusContext"
 
-// Chart.js
 import {
   Chart as ChartJS,
   BarElement,
@@ -21,6 +20,9 @@ ChartJS.register(
   Legend
 )
 
+const API_BASE =
+  import.meta.env.VITE_API_URL || "http://localhost:5000"
+
 export default function Dashboard() {
   const { syllabus, setSyllabus, clearSyllabus } = useSyllabus()
 
@@ -34,23 +36,17 @@ export default function Dashboard() {
   const [loadingWeekly, setLoadingWeekly] = useState(false)
 
   const [planHistory, setPlanHistory] = useState([])
-
-  // 🔥 REAL STUDY STREAK
   const [studyStreak, setStudyStreak] = useState(0)
 
   const topics = syllabus?.topics || []
 
-  /* =========================
-     LOAD PLAN HISTORY
-  ========================= */
+  /* ================= LOAD HISTORY ================= */
   useEffect(() => {
     const saved = localStorage.getItem("planHistory")
     if (saved) setPlanHistory(JSON.parse(saved))
   }, [])
 
-  /* =========================
-     LOAD STUDY STREAK
-  ========================= */
+  /* ================= LOAD STREAK ================= */
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("studyStreak"))
     if (!saved) return
@@ -68,9 +64,6 @@ export default function Dashboard() {
     }
   }, [])
 
-  /* =========================
-     UPDATE STREAK
-  ========================= */
   const updateStreak = () => {
     const today = new Date().toDateString()
     const saved = JSON.parse(localStorage.getItem("studyStreak"))
@@ -90,25 +83,15 @@ export default function Dashboard() {
     const diff =
       (new Date(today) - new Date(last)) / (1000 * 60 * 60 * 24)
 
-    if (diff === 1) {
-      const newStreak = saved.streak + 1
-      localStorage.setItem(
-        "studyStreak",
-        JSON.stringify({ streak: newStreak, lastStudyDate: today })
-      )
-      setStudyStreak(newStreak)
-    } else {
-      localStorage.setItem(
-        "studyStreak",
-        JSON.stringify({ streak: 1, lastStudyDate: today })
-      )
-      setStudyStreak(1)
-    }
+    const newStreak = diff === 1 ? saved.streak + 1 : 1
+
+    localStorage.setItem(
+      "studyStreak",
+      JSON.stringify({ streak: newStreak, lastStudyDate: today })
+    )
+    setStudyStreak(newStreak)
   }
 
-  /* =========================
-     SAVE PLAN HISTORY
-  ========================= */
   const savePlanToHistory = (type, content) => {
     const newPlan = {
       id: Date.now(),
@@ -123,9 +106,7 @@ export default function Dashboard() {
     localStorage.setItem("planHistory", JSON.stringify(updated))
   }
 
-  /* =========================
-     READINESS LOGIC
-  ========================= */
+  /* ================= READINESS ================= */
   const completedCount = topics.filter(t => t.completed).length
   const topicCompletionPercent = topics.length
     ? Math.round((completedCount / topics.length) * 100)
@@ -143,9 +124,6 @@ export default function Dashboard() {
       ? "Almost Ready ⚠️"
       : "Not Ready ❌"
 
-  /* =========================
-     TOGGLE TOPIC
-  ========================= */
   const toggleTopic = (index) => {
     const updatedTopics = topics.map((topic, i) =>
       i === index ? { ...topic, completed: !topic.completed } : topic
@@ -159,9 +137,6 @@ export default function Dashboard() {
     updateStreak()
   }
 
-  /* =========================
-     CHART DATA
-  ========================= */
   const chartData = {
     labels: topics.map(t => t.name),
     datasets: [
@@ -185,17 +160,15 @@ export default function Dashboard() {
     },
   }
 
-  /* =========================
-     AI CALLS
-  ========================= */
+  /* ================= AI CALLS ================= */
+
   const getAIReadiness = async () => {
     if (!syllabus) return
     setLoadingAI(true)
     setAiAnalysis("")
 
     try {
-      const res = await fetch("/api/ai/readiness", {
-
+      const res = await fetch(`${API_BASE}/api/ai/readiness`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -221,8 +194,7 @@ export default function Dashboard() {
     setDailyPlan("")
 
     try {
-      const res = await fetch("/api/ai/daily-plan", {
-
+      const res = await fetch(`${API_BASE}/api/ai/daily-plan`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -250,8 +222,7 @@ export default function Dashboard() {
     setWeeklyPlan("")
 
     try {
-      const res = await fetch("/api/ai/weekly-plan", {
-
+      const res = await fetch(`${API_BASE}/api/ai/weekly-plan`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -279,6 +250,7 @@ export default function Dashboard() {
       <p className="text-gray-400 mb-8">
         Track your preparation and stay exam-ready.
       </p>
+
 
       {/* STATS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
