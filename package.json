@@ -3,10 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "build": "cd client && npm install && npx vite build",
-    "start": "cd server && npm install && node index.js"
-  },
   "engines": {
     "node": ">=20"
   }
