@@ -20,13 +20,10 @@ export default function Upload() {
     formData.append("file", file)
 
     try {
-      const res = await fetch(
-        `${API_BASE}/api/upload/syllabus`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      )
+      const res = await fetch(`${API_BASE}/api/upload/syllabus`, {
+        method: "POST",
+        body: formData,
+      })
 
       const data = await res.json()
 
@@ -53,24 +50,41 @@ export default function Upload() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
-      <h2 className="text-2xl mb-6">
-        Upload Syllabus (PDF / Image)
-      </h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black text-white p-6">
 
-      <input
-        type="file"
-        accept=".pdf,image/*"
-        onChange={(e) => setFile(e.target.files[0])}
-        className="mb-4"
-      />
+      {/* Main Card */}
+      <div className="w-full max-w-md border border-gray-700 rounded-2xl p-8 bg-white/5 backdrop-blur-lg shadow-xl">
 
-      <button
-        onClick={handleUpload}
-        className="px-6 py-3 bg-indigo-600 rounded-lg hover:bg-indigo-500"
-      >
-        {loading ? "Analyzing..." : "Upload & Analyze"}
-      </button>
+        {/* Title */}
+        <h2 className="text-2xl font-semibold text-center mb-6">
+          Upload Your Syllabus
+        </h2>
+
+        {/* Upload Box */}
+        <div className="border border-gray-600 rounded-lg p-6 text-center mb-6 hover:border-indigo-500 transition">
+          <input
+            type="file"
+            accept=".pdf,image/*"
+            onChange={(e) => setFile(e.target.files[0])}
+            className="text-sm"
+          />
+
+          {file && (
+            <p className="mt-3 text-green-400 text-sm">
+              Selected: {file.name}
+            </p>
+          )}
+        </div>
+
+        {/* Upload Button */}
+        <button
+          onClick={handleUpload}
+          className="w-full border border-indigo-500 bg-indigo-600 py-3 rounded-lg font-medium hover:bg-indigo-500 transition"
+        >
+          {loading ? "Analyzing..." : "Upload & Analyze"}
+        </button>
+
+      </div>
     </div>
   )
 }
