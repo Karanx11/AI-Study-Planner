@@ -60,23 +60,23 @@
 
 ### 🏠 Landing Page
 
-![Home Web](ai-study-planner/src/assets/screenshot/home.png)
+![Home Web](./client/src/assets/screenshot/home.png)
 
 ### 📊 Dashboard
 
-![Dashboard Web](ai-study-planner/src/assets/screenshot/dashboard.png)
+![Dashboard Web](./client/src/assets/screenshot/dashboard.png)
 
 ### 📂 Upload Syllabus
 
-![Upload](ai-study-planner/src/assets/screenshot/upload.png)
+![Upload](./client/src/assets/screenshot/upload.png)
 
 ### 🧠 AI Analysis
 
-![AI Analysis](ai-study-planner/src/assets/screenshot/AIAnalysis.png)
+![AI Analysis](./client/src/assets/screenshot/AIAnalysis.png)
 
 ### 📅 AI Study Plans
 
-![AI Study Plans](ai-study-planner/src/assets/screenshot/StudyPlans.png)
+![AI Study Plans](./client/src/assets/screenshot/StudyPlans.png)
 
 
 
